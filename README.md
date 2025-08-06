@@ -1,8 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Wild Oasis 🌿
 
-## Getting Started
+This repository contains the **guest web application** for _The Wild Oasis_, a boutique hotel offering 8 luxury wooden cabins.  
+Built with **Next.js**, it allows potential and current guests to explore the hotel, view cabin availability, make and manage reservations, and update their personal profiles.
 
-First, run the development server:
+This app shares the same API and database as the internal back-office system (_The Wild Oasis Admin_), ensuring synchronized data across all platforms.
+
+> Web app for guests: explore, book, and manage stays  
+> Connected to the same database and API as the back-office  
+> Secure login and profile management  
+> Reservation management without online payment
+
+## 🚀 Features
+
+- **Authentication**
+
+  - Secure login and sign-up for new guests
+  - Automatic profile creation upon registration
+
+- **Cabin Exploration**
+
+  - Overview of all available cabins
+  - Individual cabin detail pages with availability
+  - Filter cabins by maximum guest capacity
+
+- **Reservations**
+
+  - Reserve a cabin for specific dates
+  - Reservations marked as _unconfirmed_ until check-in at the property
+  - View all past and upcoming bookings
+  - Update or cancel reservations
+
+- **Profile**
+
+  - View and update guest information to streamline hotel check-in
+
+- **About**
+  - Dedicated page describing the hotel, concept, and philosophy
+
+## 📄 Pages
+
+- `/` : Homepage
+- `/about` : About The Wild Oasis
+- `/cabins` : List of available cabins
+- `/cabins/:cabinId` : Cabin detail and availability
+- `/login` : Login page
+- `/account/reservations` : Guest reservation history and upcoming stays
+- `/account/profile` : Guest profile page
+
+## 🛠 Technologies
+
+- **Next.js**
+- **TailwindCSS**
+- **Context API**
+- **Supabase**
+
+## 💻 Quick Start
+
+To run **The Wild Oasis** website locally:
 
 ```bash
 npm run dev
@@ -15,22 +69,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
