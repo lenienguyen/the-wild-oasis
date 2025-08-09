@@ -128,6 +128,8 @@ export const getBookedDatesByCabinId = async (cabinId) => {
 export const getSettings = async () => {
   const { data, error } = await supabase.from("settings").select("*").single();
 
+  //await new Promise((res) => setTimeout(res, 2000));
+
   if (error) {
     console.error(error);
     throw new Error("Settings could not be loaded");
