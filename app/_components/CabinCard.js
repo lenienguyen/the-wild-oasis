@@ -7,7 +7,7 @@ const CabinCard = ({ cabin }) => {
 
   return (
     <div className="flex border-primary-800 border">
-      <div class="flex-1 relative">
+      <div className="flex-1 relative">
         <Image
           src={image}
           fill
