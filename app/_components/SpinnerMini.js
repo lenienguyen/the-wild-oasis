@@ -1,5 +1,5 @@
-conxst SpinnerMini = () => {
-  return <div className='spinner-mini'></div>;
-}
+const SpinnerMini = () => {
+  return <div className="spinner-mini"></div>;
+};
 
 export default SpinnerMini;
