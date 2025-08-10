@@ -14,7 +14,7 @@ This app shares the same API and database as the internal back-office system (_T
 
 - **Authentication**
 
-  - Secure login and sign-up for new guests
+  - Secure login and sign-up for new guests (Google authentification)
   - Automatic profile creation upon registration
 
 - **Cabin Exploration**

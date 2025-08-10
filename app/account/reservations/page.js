@@ -5,7 +5,6 @@ export const metadata = {
 };
 
 const Page = () => {
-  // CHANGE
   const bookings = [];
 
   return (

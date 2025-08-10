@@ -18,7 +18,6 @@ const isAlreadyBooked = (range, datesArr) => {
 const DateSelector = ({ settings, bookedDates, cabin }) => {
   const { range, setRange, resetRange } = useReservation();
 
-  // CHANGE
   const regularPrice = 23;
   const discount = 23;
   const numNights = 23;

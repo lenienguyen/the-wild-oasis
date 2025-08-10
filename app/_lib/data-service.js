@@ -184,7 +184,7 @@ export const createBooking = async (newBooking) => {
 // UPDATE
 
 // object updatedFields only contain the updated data
-export const updateGuest = async (id, updatedFields) => {
+/* export const updateGuest = async (id, updatedFields) => {
   const { data, error } = await supabase
     .from("guests")
     .update(updatedFields)
@@ -197,9 +197,9 @@ export const updateGuest = async (id, updatedFields) => {
     throw new Error("Guest could not be updated");
   }
   return data;
-};
+}; */
 
-export const updateBooking = async (id, updatedFields) => {
+/* export const updateBooking = async (id, updatedFields) => {
   const { data, error } = await supabase
     .from("bookings")
     .update(updatedFields)
@@ -212,12 +212,12 @@ export const updateBooking = async (id, updatedFields) => {
     throw new Error("Booking could not be updated");
   }
   return data;
-};
+}; */
 
 /////////////
 // DELETE
 
-export const deleteBooking = async (id) => {
+/* export const deleteBooking = async (id) => {
   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
 
   if (error) {
@@ -225,4 +225,4 @@ export const deleteBooking = async (id) => {
     throw new Error("Booking could not be deleted");
   }
   return data;
-};
+}; */
