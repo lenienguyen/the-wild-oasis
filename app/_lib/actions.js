@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
+import { redirect } from "next/navigation";
 
 export const updateGuest = async (formData) => {
   const session = await auth();
@@ -30,15 +31,18 @@ export const updateGuest = async (formData) => {
 };
 
 export const deleteReservation = async (bookingId) => {
+  // Authenticate
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
+  // Check authorization
   const guestBookings = await getBookings(session.user.guestId);
   const guestBookingsIds = guestBookings.map((booking) => booking.id);
 
   if (!guestBookingsIds.includes(bookingId))
     throw new Error("You are not allowed to delete this booking");
 
+  // Mutate
   const { error } = await supabase
     .from("bookings")
     .delete()
@@ -48,6 +52,47 @@ export const deleteReservation = async (bookingId) => {
 
   revalidatePath("/account/reservations");
 };
+
+export const updateReservation = async (formData) => {
+  const bookingId = Number(formData.get("bookingId"));
+
+  // Authenticate
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  // Check authorization
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingsIds = guestBookings.map((booking) => booking.id);
+
+  if (!guestBookingsIds.includes(bookingId))
+    throw new Error("You are not allowed to update this booking");
+
+  // Build updated data
+  const updatedData = {
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+  };
+
+  // Mutate
+  const { error } = await supabase
+    .from("bookings")
+    .update(updatedData)
+    .eq("id", bookingId)
+    .select()
+    .single();
+
+  // Error handling
+  if (error) throw new Error("Booking could not be updated");
+
+  // Update cache
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+  revalidatePath("/account/reservations");
+
+  // Redirecting
+  redirect("/account/reservations");
+};
+
+export const editReservation = async () => {};
 
 export const signInAction = async () => {
   await signIn("google", { redirectTo: "/account" });
