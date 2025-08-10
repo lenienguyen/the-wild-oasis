@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Counter = ({ users }) => {
   const [count, setCount] = useState(0);
-  console.log(users);
+
   return (
     <div>
       <p>{users.length}</p>

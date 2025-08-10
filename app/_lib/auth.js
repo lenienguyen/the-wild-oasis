@@ -8,4 +8,9 @@ export const {
   signOut,
 } = NextAuth({
   providers: [Google],
+  callbacks: {
+    authorized: async ({ auth, request }) => {
+      return !!auth;
+    },
+  },
 });
