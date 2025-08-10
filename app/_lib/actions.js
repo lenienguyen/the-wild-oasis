@@ -30,7 +30,29 @@ export const updateGuest = async (formData) => {
   revalidatePath("/account/profile");
 };
 
-export const deleteReservation = async (bookingId) => {
+export const createBooking = async (bookingData, formData) => {
+  // Authenticate
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    status: "unconfirmed",
+    isPaid: false,
+    hasBreakfast: false,
+  };
+
+  const { error } = await supabase.from("bookings").insert([newBooking]);
+
+  if (error) throw new Error("Booking could not be created");
+};
+
+export const deleteBooking = async (bookingId) => {
   // Authenticate
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
@@ -53,7 +75,7 @@ export const deleteReservation = async (bookingId) => {
   revalidatePath("/account/reservations");
 };
 
-export const updateReservation = async (formData) => {
+export const updateBooking = async (formData) => {
   const bookingId = Number(formData.get("bookingId"));
 
   // Authenticate
@@ -91,8 +113,6 @@ export const updateReservation = async (formData) => {
   // Redirecting
   redirect("/account/reservations");
 };
-
-export const editReservation = async () => {};
 
 export const signInAction = async () => {
   await signIn("google", { redirectTo: "/account" });

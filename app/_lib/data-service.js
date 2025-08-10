@@ -164,7 +164,7 @@ export const createGuest = async (newGuest) => {
   return data;
 };
 
-export const createBooking = async (newBooking) => {
+/* export const createBooking = async (newBooking) => {
   const { data, error } = await supabase
     .from("bookings")
     .insert([newBooking])
@@ -178,7 +178,7 @@ export const createBooking = async (newBooking) => {
   }
 
   return data;
-};
+}; */
 
 /////////////
 // UPDATE
